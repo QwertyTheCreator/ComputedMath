@@ -36,19 +36,6 @@ public class HoletskiyMatrix
                 _sMatrix[i][j] = S(i, j);
             }
         }
-
-        Console.WriteLine("Опеределитель A: " + Determinator);
-
-        for (int i = 0; i < _size; i++)
-        {
-            Console.Write(string.Concat(Enumerable.Repeat("0 ", i)));
-            for (int j = 0; j < _size - i; j++)
-            {
-                Console.Write(decimal.Round(_sMatrix[i][j], 2) + " ");
-            }
-
-            Console.WriteLine();
-        }
     }
 
     public decimal[] SolveSoLE(decimal[] rightVector) // Решение СЛАУ
@@ -60,16 +47,12 @@ public class HoletskiyMatrix
             yVector[i] = Y(i, rightVector, yVector);
         }
 
-        Console.WriteLine("Y vector: " + string.Concat(yVector.Select(y => y.ToString() + " ")));
-
         decimal[] xVector = new decimal[_size];
 
         for (int i = _size - 1; i >= 0; i--)
         {
             xVector[i] = X(i, yVector, xVector);
         }
-
-        Console.WriteLine("X vector: " + string.Concat(xVector.Select(x => decimal.Round(x, 2).ToString() + " ")));
 
         return xVector;
     }
